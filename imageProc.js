@@ -10,7 +10,10 @@ function runQuery(numPhotos, cloudVisionURL) { // add parameters
   $.ajax({
     url: cloudVisionURL,
     method: "POST"
-  })
+  }).done(function(cloudData) {
+    console.log("URL:" + cloudVisionURL);
+    console.log(cloudData);
+  });
 }
 
 function encodeImageFileAsURL(element) {
