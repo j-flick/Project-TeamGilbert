@@ -6,13 +6,17 @@ var apiKey = "AIzaSyCF2DVvnz6sI81_a2Jkt890y8na5IdFfwc";
 
 cloudVisionURL = "https://vision.googleapis.com/v1/images:annotate?key=" + apiKey + "";
 
-function runQuery(numPhotos, cloudVisionURL) { // add parameters
+function runQuery(imgRequest, cloudVisionURL) { // add parameters
   $.ajax({
     url: cloudVisionURL,
-    method: "POST"
+    method: "POST",
+    data: imgRequest,
+    contentType: 'application/json'
   }).done(function(cloudData) {
     console.log("URL:" + cloudVisionURL);
     console.log(cloudData);
+  }).fail(function (jqXHR, textStatus, errorThrown) {
+     console.log('ERRORS: ' + textStatus + ' ' + errorThrown);
   });
 }
 
@@ -26,6 +30,7 @@ function encodeImageFileAsURL(element) {
     buildJson(reader.result.replace('data:image/jpeg;base64,', ""));
     console.log(AnnotateImageRequests);
     //console.log(JSON.stringify(AnnotateImageRequests));
+    runQuery(JSON.stringify(AnnotateImageRequests), cloudVisionURL);
 
   }
   reader.readAsDataURL(file);
