@@ -1,6 +1,18 @@
 var AnnotateImageRequests = {requests: []};
 var cloudVisionURL;
 
+var apiKey = "AIzaSyCF2DVvnz6sI81_a2Jkt890y8na5IdFfwc";
+// key=API_KEY
+
+cloudVisionURL = "https://vision.googleapis.com/v1/images:annotate?key=" + apiKey + "";
+
+function runQuery(numPhotos, cloudVisionURL) { // add parameters
+  $.ajax({
+    url: cloudVisionURL,
+    method: "POST"
+  })
+}
+
 function encodeImageFileAsURL(element) {
   var file = element.files[0];
   var reader = new FileReader();
