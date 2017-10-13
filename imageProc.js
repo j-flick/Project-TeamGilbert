@@ -19,10 +19,12 @@ function runQuery(imgRequest, cloudVisionURL) { // add parameters
 
     parseArray(cloudData);
 
+
   }).fail(function (jqXHR, textStatus, errorThrown) {
      console.log('ERRORS: ' + textStatus + ' ' + errorThrown);
   });
 }
+
 
 function parseArray(data) {
 
@@ -32,6 +34,7 @@ function parseArray(data) {
   for (var i = 0; i < data.responses[0].labelAnnotations.length; i++) {
     ing.push(data.responses[0].labelAnnotations[i].description);
   }
+
 }
 
 function encodeImageFileAsURL(element) {
