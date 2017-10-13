@@ -20,6 +20,7 @@ function runQuery(imgRequest, cloudVisionURL) { // add parameters
 
     parseArray(cloudData);
 
+
   }).fail(function (jqXHR, textStatus, errorThrown) {
      console.log('ERRORS: ' + textStatus + ' ' + errorThrown);
   });
