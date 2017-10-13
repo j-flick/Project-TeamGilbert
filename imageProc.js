@@ -1,5 +1,6 @@
 var AnnotateImageRequests = {requests: []};
 var cloudVisionURL;
+var ing = [];
 
 var apiKey = "AIzaSyCF2DVvnz6sI81_a2Jkt890y8na5IdFfwc";
 // key=API_KEY
@@ -15,9 +16,16 @@ function runQuery(imgRequest, cloudVisionURL) { // add parameters
   }).done(function(cloudData) {
     console.log("URL:" + cloudVisionURL);
     console.log(cloudData);
+    parseArray(cloudData);    
   }).fail(function (jqXHR, textStatus, errorThrown) {
      console.log('ERRORS: ' + textStatus + ' ' + errorThrown);
   });
+}
+
+function parseArray(data){
+  console.log(data);
+  console.log(data[0]);
+
 }
 
 function encodeImageFileAsURL(element) {
