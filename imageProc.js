@@ -3,7 +3,7 @@ var cloudVisionURL;
 var ing = [];
 
 var apiKey = "AIzaSyCF2DVvnz6sI81_a2Jkt890y8na5IdFfwc";
-// key=API_KEY
+// food2fork: c103ba7d0a1fa27872bc2e2a6a224ae9
 
 cloudVisionURL = "https://vision.googleapis.com/v1/images:annotate?key=" + apiKey + "";
 
@@ -16,15 +16,24 @@ function runQuery(imgRequest, cloudVisionURL) { // add parameters
   }).done(function(cloudData) {
     console.log("URL:" + cloudVisionURL);
     console.log(cloudData);
-    parseArray(cloudData);    
+
+    parseArray(cloudData);
+
+
   }).fail(function (jqXHR, textStatus, errorThrown) {
      console.log('ERRORS: ' + textStatus + ' ' + errorThrown);
   });
 }
 
-function parseArray(data){
-  console.log(data);
-  console.log(data[0]);
+
+function parseArray(data) {
+
+  console.log(data.responses);
+  console.log(data.responses[0].labelAnnotations[0].description);
+
+  for (var i = 0; i < data.responses[0].labelAnnotations.length; i++) {
+    ing.push(data.responses[0].labelAnnotations[i].description);
+  }
 
 }
 
