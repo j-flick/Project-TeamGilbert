@@ -6,6 +6,7 @@ var apiKey = "AIzaSyCF2DVvnz6sI81_a2Jkt890y8na5IdFfwc";
 // food2fork: c103ba7d0a1fa27872bc2e2a6a224ae9
 
 cloudVisionURL = "https://vision.googleapis.com/v1/images:annotate?key=" + apiKey + "";
+foodURL = "http://food2fork.com/api/search?key=c103ba7d0a1fa27872bc2e2a6a224ae9&q=";
 
 function runQuery(imgRequest, cloudVisionURL) { // add parameters
   $.ajax({
@@ -25,6 +26,14 @@ function runQuery(imgRequest, cloudVisionURL) { // add parameters
   });
 }
 
+function testFoodApi() {
+  $.ajax({
+    url: foodURL,
+    method: "GET"
+  }).done(function(foodData) {
+    console.log(foodData);
+  });
+}
 
 function parseArray(data) {
 
@@ -35,6 +44,9 @@ function parseArray(data) {
     ing.push(data.responses[0].labelAnnotations[i].description);
   }
 
+  var convertedArray = encodeURIComponent(ing);
+
+  foodURL += convertedArray;
 }
 
 function encodeImageFileAsURL(element) {
