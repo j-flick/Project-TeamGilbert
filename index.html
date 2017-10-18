@@ -1,32 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="imageProc.js"></script>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <h1>Image Detection</h1>
-      </div>
-      <div class="row">
-        <input type="file" onchange="encodeImageFileAsURL(this)" />
-      </div>
-      <div class="row">
-        <button id="btn2" onclick="testFoodApi()">button2</button> 
-      </div>
-      <div class="row">
-        <div class="col">
-          <img id="img" height="150">
-          <p id="img64" style="overflow-wrap: break-word;"></p>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Recipe Finder - Team Gilbert</title>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <nav class="#99ca3c">
+                <a href="index.html" class="receipe-logo"><img class="recipefinder-logo" id="logo" src="assets/images/recipeFinderLogo.png"/></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li class="nav2"><a href="index.html">HOME</a></li>
+                    <li class="nav2"><a href="favorites.html">FAVORITES</a></li>
+                </ul>
         </div>
-      </div>
-    </div>
-  </body>
+        </nav>
+        <div id="index-banner" class="parallax-container">
+            <div class="section no-pad-bot">
+                <div class="container">
+                    <div class="row center">
+                        <div class="whiteBg">
+                            <form action="#" class="form1">
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>Upload Photo</span>
+                                        <input type="file" multiple>
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                                    </div>
+                                </div>
+                                <div id="findrecipe">
+                                    <a href="suggested.html" id="download-button">Find Recipes</a>
+                                </div>
+                        </div>
+                        </form>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <div class="parallax"><img class="responsive-img" src="assets/images/background1.jpg" alt="Food Bg"></div>
+        </div>
+        <div class="container">
+            <div class="section">
+                <!--   Pictures Section   -->
+                <div class="row">
+                    <div class="col s12 m4">
+                        <div class="icon-block">
+                            <img class="responsive-img" src="assets/images/imgHolder.jpg">
+                        </div>
+                    </div>
+                    <div class="col s12 m4">
+                        <div class="icon-block">
+                            <img class="responsive-img" src="assets/images/imgHolder.jpg">
+                        </div>
+                    </div>
+                    <div class="col s12 m4">
+                        <div class="icon-block">
+                            <img class="responsive-img" src="assets/images/imgHolder.jpg">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  Scripts-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="assets/js/materialize.js"></script>
+        <script src="assets/js/init.js"></script>
+</body>
+
 </html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Recipe Finder - Team Gilbert</title>
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <nav class="#99ca3c">
+                <a href="index.html" class="receipe-logo"><img class="recipefinder-logo" id="logo" src="assets/images/recipeFinderLogo.png"/></a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li class="nav2"><a href="index.html">HOME</a></li>
+                    <li class="nav2"><a href="favorites.html">FAVORITES</a></li>
+                </ul>
+        </div>
+        </nav>
+        <div class="nav-wrapper">
+            <nav class="heading2">
+        </div>
+        <div class="container">
+            <div class="section">
+                <ul class="pagination">
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                    <li><a href="suggested.html">Back to results</a></li>
+                </ul>
+                <!--   Returned Recipes Section   -->
+                <div class="row">
+                    <div class="col s12 m6">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="assets/images/foodImgs/salmon-teriyaki.jpg">
+                            </div>
+                            <div class="card-content">
+                                <h6>Ingredients</h6>
+                                <form action="#">
+                                    <p>
+                                        <input type="checkbox" id="ingred1" />
+                                        <label for="ingred1">Ingredient 1</label>
+                                        <br>
+                                        <input type="checkbox" id="ingred2" />
+                                        <label for="ingred2">Ingredient 2</label>
+                                        <br>
+                                        <input type="checkbox" id="ingred3" />
+                                        <label for="ingred3">Ingredient 3</label>
+                                        <br>
+                                        <input type="checkbox" id="ingred4" />
+                                        <label for="ingred4">Ingredient 4</label>
+                                        <br>
+                                        <p> <i class="small material-icons">add_circle</i> Add checked ingredients to shopping list </p>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m6">
+                        <h5><span style="color:#CD5426; font-weight: bold;">Recipe Name Here</span></h5>
+                        <table class="bordered">
+                            <tbody>
+                                <tr>
+                                    <td class="tableHead">Yield</td>
+                                    <td>Serves 4</td>
+                                </tr>
+                                <tr>
+                                    <td class="tableHead">Active Time</td>
+                                    <td>8 minutes</td>
+                                </tr>
+                                <tr>
+                                    <td class="tableHead">Total Time</td>
+                                    <td>20 minutes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <div>
+                            <h5>Directions</h5>
+                            <p>Lorem ipsum dous risus, vel sagittis neque leo ut ipsum. Nulla pretium tincidunt faucibus. Ut tincidunt vestibulum ligula et fringilla.</p>
+                            <p>In at consequat facilisi. Aenean fringilla convallis nisl. Pellentesque non lorem nec odio vehicula accumsan et sit amet sapien.</p>
+                            <p>Maecenas sollicitudin, augue id tincidunt elementum, nisl mi elementum magna, ut accumsan nisi nunc at ante. Nullam in nibh ider.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--  Scripts-->
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="assets/js/materialize.js"></script>
+        <script src="assets/js/init.js"></script>
+</body>
+
+</html>

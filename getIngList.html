@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+
+foodURLPage = 'https://community-food2fork.p.mashape.com/search?key=17275fd61372781206ebd78bbf4c306c&page=';
+MashapeKey = 'JnmoXxIuAtmshjblVVRsKENf7njPp1X5N8sjsnHetAXbFbUKc1';
+getRecipeURL = "https://community-food2fork.p.mashape.com/get?key=17275fd61372781206ebd78bbf4c306c&rId=";
+
+var recipeIds = [];
+var recipes = [];
+var ingList = [];
+
+function getPages(){
+  testFoodApi(foodURLPage + "1" + "&q=");
+  testFoodApi(foodURLPage + "2" + "&q=");
+  testFoodApi(foodURLPage + "3" + "&q=");
+  testFoodApi(foodURLPage + "4" + "&q=");
+  testFoodApi(foodURLPage + "5" + "&q=");
+}
+
+function testFoodApi(foodURL) {
+  console.log(foodURL);
+  $.ajax({
+    url: foodURL,
+    method: "GET",
+    headers: {
+      'X-Mashape-Key': MashapeKey,
+      'Accept': 'application/json'
+    }
+  }).done(function(foodData) {
+    console.log(foodData);
+    getRecipeIds(foodData);
+  });
+}
+
+function getRecipeIds(foodData){
+
+  var recipeList = JSON.parse(foodData).recipes;
+
+  console.log(recipeList);
+
+  //[0].recipe_id
+
+  for(var i = 0; i < recipeList.length; i++){
+    recipeIds.push(recipeList[i].recipe_id);
+  }
+
+  console.log(recipeIds);
+}
+
+function getRecipe(recipeId){
+  //console.log(foodData);
+  $.ajax({
+    url: getRecipeURL + recipeId,
+    method: "GET",
+    headers: {
+      'X-Mashape-Key': MashapeKey,
+      'Accept': 'application/json'
+    }
+  }).done(function(foodData) {
+    recipes.push(JSON.parse(foodData));
+    console.log(recipes);
+  });
+
+}//ingredients
+
+function getIng(){
+
+  for(var i = 0; i < recipeIds.length; i++){
+    getRecipe(recipeIds[i]);
+  }
+}
+
+function getIngList(){
+  for(var i = 0; i < recipes.length; i++){
+    for(var j = 0; j < recipes[i].recipe.ingredients.length; j++){
+      ingList.push(recipes[i].recipe.ingredients[j]);
+    }
+  }
+
+  var wordlist = ingList.join(" ");
+  wordlist = wordlist.split(" ");
+
+  $("#output").html(wordlist.join(","));
+
+  //console.log(wordlist);
+}
+
+</script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <h1>sdgsd</h1>
+    </div>
+    <div class="row">
+      <button id="btn2" onclick="getPages()">get IDs</button> 
+    </div>
+    <div class="row">
+      <button id="btn2" onclick="getIng()">get IDs</button> 
+    </div>
+    <div class="row">
+      <button id="btn2" onclick="getIngList()">get IDs</button> 
+    </div>
+    <div class="row">
+      <p id="output"></p> 
+    </div>
+  </div>
+</body>
+
+
+</html>

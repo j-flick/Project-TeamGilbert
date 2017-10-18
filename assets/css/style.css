@@ -1,0 +1,171 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+
+/* NAVIGATION*/
+
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.button-collapse {
+  color: #26a69a;
+}
+
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+
+
+  nav {
+  color: #ffffff;
+  background-color: #99ca3c;
+  width: 100%;
+
+
+  }
+
+    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+    height: 125px;
+    line-height: 64px;
+
+  }
+
+
+  .whiteBg {
+    background-color: white;
+    width: 60em;
+    height: 250px;
+    opacity: 0.8; 
+    margin: 0 auto;
+    margin-top: 50px;
+  
+  }
+
+  .form1 {
+    margin-top: 10px;
+    padding: 30px
+  }
+
+  .btn {
+background-color: #99ca3c;
+opacity: 1;
+  }
+
+.container:hover .btn {
+background-color: #CD5426;
+}
+
+
+#download-button {
+    background-color: none;
+    color: #352e23;
+    border: 2px solid #352e23; 
+    padding: 10px;
+    font-size: 20px;
+    width: 640px;
+  
+}
+
+#findrecipe:hover #download-button {
+    background-color: #352e23;
+    color: white;
+  
+}
+
+
+
+.recipefinder-logo {
+  padding: 20px;
+  padding-left: 150px;
+}
+
+
+#nav-mobile a {
+  color: white;
+    padding: 30px 
+
+
+}
+
+#nav-mobile {
+  padding-right: 150px;
+}
+
+#findrecipe {
+     margin-top: 60px;
+}
+
+.heading  {
+  background-color: #CD5426;
+  height: 60px;
+  padding-left: 150px;
+  font-size: 30px;
+
+}
+
+.heading h5 {
+  padding: 14px 0px 0px 30px;
+    margin-top: 0px;
+
+}
+
+.heading2  {
+  background-color: #CD5426;
+  height: 10px;
+  padding-left: 150px;
+  font-size: 30px;
+
+}
+
+.tableHead {
+  font-weight: bold;
+}
+
+.pagination li.active {
+    background-color: #99ca3c;
+}
+
+h6 {
+  font-weight: bold;
+}
