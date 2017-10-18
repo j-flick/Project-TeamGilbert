@@ -82,22 +82,9 @@ p {
   
   }
 
-  .form1 {
-    margin-top: 10px;
-    padding: 30px
-  }
+ 
 
-  .btn {
-background-color: #99ca3c;
-opacity: 1;
-  }
-
-.container:hover .btn {
-background-color: #CD5426;
-}
-
-
-#download-button {
+#upload-button, #download-button {
     background-color: none;
     color: #352e23;
     border: 2px solid #352e23; 
@@ -107,11 +94,36 @@ background-color: #CD5426;
   
 }
 
+#upload-button{
+    background-color: #352e23;
+    color: white;
+    border: 2px solid #352e23; 
+    padding: 10px;
+    font-size: 20px;
+    width: 640px;
+  
+}
+
+#upload, #findrecipe  {
+     
+ padding-top: 70px;
+ padding-left: 20px;
+
+}
+
+
 #findrecipe:hover #download-button {
     background-color: #352e23;
     color: white;
   
 }
+
+#upload:hover #upload-button {
+    background-color: #352e23;
+    color: white;
+  
+}
+
 
 
 
@@ -132,9 +144,6 @@ background-color: #CD5426;
   padding-right: 150px;
 }
 
-#findrecipe {
-     margin-top: 60px;
-}
 
 .heading  {
   background-color: #CD5426;
@@ -169,3 +178,5 @@ background-color: #CD5426;
 h6 {
   font-weight: bold;
 }
+
+
