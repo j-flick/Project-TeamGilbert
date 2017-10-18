@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+ 
 </head>
 
 <body>
@@ -25,34 +26,120 @@
         <div id="index-banner" class="parallax-container">
             <div class="section no-pad-bot">
                 <div class="container">
-                    <div class="row center">
+                    <div>
                         <div class="whiteBg">
-                            <form action="#" class="form1">
-                                <div class="file-field input-field">
-                                    <div class="btn">
-                                        <span>Upload Photo</span>
-                                        <input type="file" multiple>
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text" placeholder="Upload one or more files">
-                                    </div>
+
+                             <div id="upload" style="overflow:hidden">
+                                <input type="file" id="fileInput" name="fileInput" />
+                       
+                               <button type="button" id="upload-button" onclick="chooseFile();">Upload Photo</button>
+
+                                        <script>
+                                           function chooseFile() {
+                                              $("#fileInput").click();
+                                           }
+                                        </script>     
+                            
                                 </div>
+
                                 <div id="findrecipe">
                                     <a href="suggested.html" id="download-button">Find Recipes</a>
                                 </div>
+
+
                         </div>
-                        </form>
+                        
                     </div>
-                    <br>
-                    <br>
+                    
                 </div>
             </div>
             <div class="parallax"><img class="responsive-img" src="assets/images/background1.jpg" alt="Food Bg"></div>
         </div>
+
+        <div class="nav-wrapper">
+            <nav class="heading">
+                <h5>Top Suggested Recipes</h5>
+        </div>
         <div class="container">
             <div class="section">
-                <!--   Pictures Section   -->
+             
+                <!--   Returned Recipes Section   -->
                 <div class="row">
+                    <div class="col s12 m4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="assets/images/foodImgs/salmon-teriyaki.jpg">
+                            </div>
+                            <div class="card-content">
+                                <h6>Recipe Name here</h6>
+                                <p><a href="recipePage.html">Link here</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="assets/images/foodImgs/salmon_garlicButter.jpg">
+                            </div>
+                            <div class="card-content">
+                                <h6>Recipe Name here</h6>
+                                <p><a href="recipePage.html">Link here</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="assets/images/foodImgs/salmon_honey-mustard.jpg">
+                            </div>
+                            <div class="card-content">
+                                <h6>Recipe Name here</h6>
+                                <p><a href="recipePage.html">Link here</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="assets/images/foodImgs/salmon_lemongrass.jpg">
+                            </div>
+                            <div class="card-content">
+                                <h6>Recipe Name here</h6>
+                                <p><a href="recipePage.html">Link here</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="assets/images/foodImgs/salmon_hoisin-glazed.jpg">
+                            </div>
+                            <div class="card-content">
+                                <h6>Recipe Name here</h6>
+                                <p><a href="recipePage.html">Link here</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m4">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="assets/images/foodImgs/salmon-riceBeans.jpg">
+                            </div>
+                            <div class="card-content">
+                                <h6>Recipe Name here</h6>
+                                <p><a href="recipePage.html">Link here</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      <!--   <div class="container">
+            <div class="section"> -->
+                <!--   Pictures Section   -->
+                <!-- <div class="row">
                     <div class="col s12 m4">
                         <div class="icon-block">
                             <img class="responsive-img" src="assets/images/imgHolder.jpg">
@@ -70,11 +157,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="assets/js/materialize.js"></script>
         <script src="assets/js/init.js"></script>
+
 </body>
 
 </html>
