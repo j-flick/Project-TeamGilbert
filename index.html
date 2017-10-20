@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="assets/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
     <link href="assets/css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
- 
 </head>
 
 <body>
@@ -28,141 +27,55 @@
                 <div class="container">
                     <div>
                         <div class="whiteBg">
-
-                             <div id="upload" style="overflow:hidden">
-                                <input type="file" id="fileInput" name="fileInput" />
-                       
-                               <button type="button" id="upload-button" onclick="chooseFile();">Upload Photo</button>
-
-                                        <script>
-                                           function chooseFile() {
-                                              $("#fileInput").click();
-                                           }
-                                        </script>     
-                            
-                                </div>
-
-                                <div id="findrecipe">
-                                    <a href="suggested.html" id="download-button">Find Recipes</a>
-                                </div>
-
-
+                            <div id="buttons">
+                                <label class="custom-file-upload">
+                                    <input type="file" onchange="callGoogleVisionAPI(this)"/>
+                                    <i class="fa fa-cloud-upload"></i> Upload Photo
+                                </label>
+                            </div>
+                            <div id="buttons">
+                                <button id="findRecipeBtn" onclick="callFood2ForkAPI()">Find Recipes</button>                                
+                            </div>
                         </div>
-                        
                     </div>
-                    
                 </div>
             </div>
             <div class="parallax"><img class="responsive-img" src="assets/images/background1.jpg" alt="Food Bg"></div>
         </div>
-
         <div class="nav-wrapper">
             <nav class="heading">
-                <h5>Top Suggested Recipes</h5>
+                <h5 id="text-bar">Top Suggested Recipes</h5>
         </div>
         <div class="container">
             <div class="section">
-             
+                <div id="recipe-cards" class="row">
+                </div>
                 <!--   Returned Recipes Section   -->
-                <div class="row">
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="assets/images/foodImgs/salmon-teriyaki.jpg">
-                            </div>
-                            <div class="card-content">
-                                <h6>Recipe Name here</h6>
-                                <p><a href="recipePage.html">Link here</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="assets/images/foodImgs/salmon_garlicButter.jpg">
-                            </div>
-                            <div class="card-content">
-                                <h6>Recipe Name here</h6>
-                                <p><a href="recipePage.html">Link here</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="assets/images/foodImgs/salmon_honey-mustard.jpg">
-                            </div>
-                            <div class="card-content">
-                                <h6>Recipe Name here</h6>
-                                <p><a href="recipePage.html">Link here</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="assets/images/foodImgs/salmon_lemongrass.jpg">
-                            </div>
-                            <div class="card-content">
-                                <h6>Recipe Name here</h6>
-                                <p><a href="recipePage.html">Link here</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="assets/images/foodImgs/salmon_hoisin-glazed.jpg">
-                            </div>
-                            <div class="card-content">
-                                <h6>Recipe Name here</h6>
-                                <p><a href="recipePage.html">Link here</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s12 m4">
-                        <div class="card">
-                            <div class="card-image">
-                                <img src="assets/images/foodImgs/salmon-riceBeans.jpg">
-                            </div>
-                            <div class="card-content">
-                                <h6>Recipe Name here</h6>
-                                <p><a href="recipePage.html">Link here</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-      <!--   <div class="container">
-            <div class="section"> -->
-                <!--   Pictures Section   -->
-                <!-- <div class="row">
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <img class="responsive-img" src="assets/images/imgHolder.jpg">
-                        </div>
+
+        <script id="card-template" type="text/x-handlebars-template">
+            
+            <div class="col s12 m4">
+                <div class="card">
+                    <div class="card-image" style="background-image: url({{image_hb}})">>
+                        <!-- <img src="{{image_hb}}"> -->
                     </div>
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <img class="responsive-img" src="assets/images/imgHolder.jpg">
-                        </div>
-                    </div>
-                    <div class="col s12 m4">
-                        <div class="icon-block">
-                            <img class="responsive-img" src="assets/images/imgHolder.jpg">
-                        </div>
+                    <div class="card-content">
+                        <h6>{{title_hb}}</h6>
+                        <p><a href="{{url_hb}}" target="blank">Link here</a></p>
                     </div>
                 </div>
             </div>
-        </div> -->
+            
+        </script>
+
         <!--  Scripts-->
-        <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="assets/js/materialize.js"></script>
         <script src="assets/js/init.js"></script>
-
+        <script src="assets/js/app.js"></script>
 </body>
 
 </html>

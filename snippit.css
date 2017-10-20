@@ -1,0 +1,9 @@
+.someclass {
+background-image: url(http://some.website.here/picture.png);
+background-size: cover;
+}
+.someclass::before {
+content: "";
+display: block;
+padding-top: 100%;
+}

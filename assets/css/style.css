@@ -9,6 +9,7 @@
 
 /* NAVIGATION*/
 
+
 nav ul a,
 nav .brand-logo {
   color: #444;
@@ -31,6 +32,23 @@ p {
   .parallax-container .section {
     width: 100%;
   }
+
+    nav {
+  color: #ffffff;
+  background-color: #99ca3c;
+  width: 100%;
+
+
+  }
+
+    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+    height: 125px;
+    line-height: 64px;
+
+  }
+
+
+/*  RESPONSIVE*/
 
 @media only screen and (max-width : 992px) {
   .parallax-container .section {
@@ -57,20 +75,25 @@ p {
 
 
 
-  nav {
-  color: #ffffff;
-  background-color: #99ca3c;
-  width: 100%;
+
+  #nav-mobile a {
+  color: white;
+    padding: 30px 
 
 
-  }
+}
 
-    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
-    height: 125px;
-    line-height: 64px;
+#nav-mobile {
+  padding-right: 150px;
+}
 
-  }
 
+.recipefinder-logo {
+  padding: 20px;
+  padding-left: 150px;
+}
+
+/*UPLOAD SECTION*/
 
   .whiteBg {
     background-color: white;
@@ -82,43 +105,45 @@ p {
   
   }
 
- 
+/* BUTTONS ON HOME PAGE*/
 
-#upload-button, #download-button {
+
+#buttons  {
+     
+ padding-top: 80px;
+ padding-left: 20px;
+
+}
+
+#findRecipeBtn {
     background-color: none;
     color: #352e23;
     border: 2px solid #352e23; 
     padding: 10px;
     font-size: 20px;
     width: 640px;
+    margin-left: 40px;
   
 }
 
-#upload-button{
+input[type="file"] {
+    display: none;
+  }
+
+.custom-file-upload {
     background-color: #352e23;
     color: white;
     border: 2px solid #352e23; 
     padding: 10px;
     font-size: 20px;
     width: 640px;
-  
-}
-
-#upload, #findrecipe  {
-     
- padding-top: 70px;
- padding-left: 20px;
-
+    margin-left: 40px;
+   
 }
 
 
-#findrecipe:hover #download-button {
-    background-color: #352e23;
-    color: white;
-  
-}
 
-#upload:hover #upload-button {
+#findrecipe:hover #findRecipeBtn {
     background-color: #352e23;
     color: white;
   
@@ -127,22 +152,7 @@ p {
 
 
 
-.recipefinder-logo {
-  padding: 20px;
-  padding-left: 150px;
-}
-
-
-#nav-mobile a {
-  color: white;
-    padding: 30px 
-
-
-}
-
-#nav-mobile {
-  padding-right: 150px;
-}
+/*RESULTS SECTION*/
 
 
 .heading  {
@@ -171,9 +181,6 @@ p {
   font-weight: bold;
 }
 
-.pagination li.active {
-    background-color: #99ca3c;
-}
 
 h6 {
   font-weight: bold;
