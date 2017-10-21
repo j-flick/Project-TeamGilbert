@@ -191,7 +191,7 @@ var validIngredientList =
                 "onion","diced","cheese","crumbled","cheddar","slices","bread","butter","coffee","water",
                 "half-and-half","sweetened","condensed","milk","skim","sugar","sweeteners","syrups","macaroni",
                 "cloves","garlic","minced","peeled","pitted","fresh","lime","juice","chopped","cilantro","salt",
-                "pepper","flour","avocado","garnish","potatoes","olive oil","rosemary","herbs","vegetable",
+                "pepper","flour","avocado","garnish","potatoes","olive oil","rosemary","herbs",
                 "yeast","baking powder","soda","cinnamon","frosting","powdered","brewed","jalapeno","peppers",
                 "sourdough","cream","tortilla chips","extra-virgin","leaves","thyme","oregano","paprika",
                 "well-crumbled","bay leaf","lemon","chilled","ice","semolina","cornmeal","pork","chipotle",
