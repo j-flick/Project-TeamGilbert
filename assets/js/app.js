@@ -16,24 +16,26 @@ var ingredientList = [];
 var recipeList = [];
 var loadImageIndex = 1;
 var cardTemplate = Handlebars.compile($("#card-template").html());
+var picTemplate = Handlebars.compile($("#pic-template").html());
 
 
-$("#file_loader").on('drag dragstart dragend dragover dragenter dragleave drop', function(e) {
+$("#index-banner").on('drag dragstart dragend dragover dragenter dragleave drop', function(e) {
     e.preventDefault();
     e.stopPropagation();
   })
-  .on('dragover dragenter', function() {
-    $("#file_loader").addClass('is-dragover');
-    console.log("dragover");
-  })
-  .on('dragleave dragend drop', function() {
-    $("#file_loader").removeClass('is-dragover');
-  })
   .on('drop', function(e) {
-    console.log(e.originalEvent.dataTransfer.files);
-    callGoogleVisionAPI(e.originalEvent.dataTransfer);
+
+    callGoogleVisionAPI(e.originalEvent.dataTransfer.files);
   }
 );
+
+$(document).keyup(function(e) {
+     if (e.keyCode == 27) { // escape key maps to keycode `27`
+        $("#ingredient-pics").empty();
+        ingredientList = [];
+        $("#text-bar").html("Add Your Ingredients to Search");
+    }
+});
 
 function buildRecipeCards(cardsPerRow) {
 	
@@ -43,66 +45,26 @@ function buildRecipeCards(cardsPerRow) {
 
 		$("#currentRow").append(cardTemplate(recipeList[i]));
 
-		if(i % cardsPerRow == 2){
+		if(i % cardsPerRow == (cardsPerRow-1)){
 			$("#currentRow").removeAttr("id");
 			$("#recipe-cards").append($("<div>").addClass("row").attr("id", "currentRow"));
 		}
-
-	}
-	
+	}	
 }
 
-/// function to interact with HTML elements
-function updateHTML(stateString, argsArray){
+function addLoadedPic(imgSrc, imgIndex){
+	$("#ingredient-pics").append(picTemplate({img_index: imgIndex, loaded_img: imgSrc}))
+}
 
-	console.log("State Change:", stateString);
-	
-	switch(stateString){
+function callGoogleVisionAPI(droppedfiles){	
 
-		case "Begin Loading Selected Image File":
-			// code
-			break;
-		
-		case "Completed Loading Selected Image File":
-			
-			break;
-
-		case "Begin Call to Google Vision API":
-			$("#text-bar").html("Working ...");
-			break;
-
-		case "Completed Call to Google Vision API":			
-			$("#text-bar").html("Identified Ingredients: " + ingredientListToText());
-			break;
-
-		case "Begin Searching for Recipes by Ingredients":
-			
-			break;
-
-		case "Completed Searching for Recipes by Ingredients":
-			if(recipeList.length > 0){
-				$("#recipe-cards").empty();
-				buildRecipeCards(3);
-			}
-			break;
-
-		default:
-			console.log("Warning: >>", stateString, "<< did not trigger any actions");
-	
-	} // End Switch Statement
-
-} // End updateHTML function
-
-function callGoogleVisionAPI(droppedfile){	
-
-	var file = droppedfile.files[0]; // Only uses first image if user selects multiple files
-	console.log(file)
 	var reader = new FileReader(); // File reader object to process selected file
 
 	reader.onloadend = function(){ // Callback function definition; Runs after FileReader loads file
 
-		updateHTML("Completed Loading Selected Image File", [reader.result]);
-		updateHTML("Begin Call to Google Vision API");
+
+		addLoadedPic([reader.result], ingredientList.length);
+		$("#text-bar").html("Searching ...");
 
 		var request = {  // create google defined json object to pass into the google API call data parameter, as required
 	    requests: [{
@@ -137,20 +99,18 @@ function callGoogleVisionAPI(droppedfile){
 
 	  		ingredientList.push(validLabels); // push the valid labels array as an element of global ingredients array	  		
 
-		    updateHTML("Completed Call to Google Vision API", [googleImageAnalysisResults]);
+		    $("#text-bar").html("Top Recipes Containing: " + ingredientListToText());
+				callFood2ForkAPI();
 
 	  }); // End Ajax Call
 
 	} // End file reader onLoadEnd callback function
 
-	updateHTML("Begin Loading Selected Image File");
-	reader.readAsDataURL(file); // initiate reading of file from user selection
+	reader.readAsDataURL(droppedfiles[0]); // initiate reading of file from user selection
   
 } // End callGoogleVisionAPI function
 
 function callFood2ForkAPI(){
-
-	updateHTML("Begin Searching for Recipes by Ingredients");
 
 	$.ajax({  // async call to food2fork api to search by ingredients
 	  url: apiURL.searchByIngredients + encodeIngredientListForURL(),
@@ -165,24 +125,17 @@ function callFood2ForkAPI(){
 
 			var returnedRecipes = JSON.parse(searchByIngredientResults).recipes // array of json recipe objects
 
+			recipeList = [];
 			if(returnedRecipes.length > 0){
-				recipeList = [];
 				returnedRecipes.forEach(function(recipeObj){ // loop through returned recipe objects from food2fork
-					
-					console.log(recipeObj);
-					var recipeData = {};
-					recipeData.title_hb = recipeObj.title;
-					recipeData.url_hb = recipeObj.source_url;
-					recipeData.id_hb = recipeObj.recipe_id;
-					recipeData.image_hb = recipeObj.image_url;
-					recipeData.rank_hb = recipeObj.social_rank;
-
-					recipeList.push(recipeData);
+	
+					recipeList.push(recipeObj);
 
 				}); // end for each
 			}// end if
 
-	  	updateHTML("Completed Searching for Recipes by Ingredients");
+	  	$("#recipe-cards").empty();
+			buildRecipeCards(3);
 
 	}); // end call back function
 
@@ -204,9 +157,13 @@ function ingredientListToText() {
 	var ingredientString = "";
 	for(var i = 0; i < ingredientList.length; i++)
 		for(var j = 0; j < ingredientList[i].length; j++)
-			ingredientString += ingredientList[i][j] + ", ";
+			ingredientString += capitalizeFirstLetter(ingredientList[i][j]) + ", ";
 
 	return ingredientString.slice(0, -2);
+}
+
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 

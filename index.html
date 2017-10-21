@@ -16,30 +16,27 @@
         <div class="nav-wrapper">
             <nav class="#99ca3c">
                 <a href="index.html" class="receipe-logo"><img class="recipefinder-logo" id="logo" src="assets/images/recipeFinderLogo.png"/></a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li class="nav2"><a href="index.html">HOME</a></li>
-                    <li class="nav2"><a href="favorites.html">FAVORITES</a></li>
-                </ul>
+                <!-- <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li class="nav2"><a href="#">HOME</a></li>
+                    <li class="nav2"><a href="#">FAVORITES</a></li>
+                </ul> -->
         </div>
         </nav>
         <div id="index-banner" class="parallax-container">
-            <div class="section no-pad-bot">
-                <div class="container">
- 
-                        <div id="file_loader" class="whiteBg"><input type="file" onchange="callGoogleVisionAPI(this)" />
+            <div id="drop-area" class="section no-pad-bot">
+                <div class="container" style="margin-top: 160px;">
 
- 
-                           
- 
-                        </div>
+                    <div id="ingredient-pics" class="row">                        
+                        
+                    </div>                       
  
                 </div>
             </div>
-            <div class="parallax"><img class="responsive-img" src="assets/images/background1.jpg" alt="Food Bg"></div>
+            <div class="parallax"><img id="bg-image" class="responsive-img" src="assets/images/background1.jpg" alt="Food Bg"></div>
         </div>
         <div class="nav-wrapper">
-            <nav class="heading">
-                <h5 id="text-bar">Top Suggested Recipes</h5>
+            <nav class="heading">                
+                <h5 id="text-bar">Add Your Ingredients to Search</h5>
         </div>
         <div class="container">
             <div id="recipe-cards" class="section">
@@ -59,6 +56,14 @@
                         <p><a href="{{source_url}}" target="blank">Link here</a></p>
                     </div>
                 </div>
+            </div>
+            
+        </script>
+
+        <script id="pic-template" type="text/x-handlebars-template">
+            
+            <div class="col">
+                <div id={{img_index}} onclick="clear()" style="background-image: url({{loaded_img}}); height: 150px; width: 150px; background-size: cover; border: 1px solid grey"></div>
             </div>
             
         </script>
