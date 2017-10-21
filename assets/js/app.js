@@ -12,17 +12,26 @@ var apiURL = {
 	searchByRecipeID: "https://community-food2fork.p.mashape.com/get?key=" + apiKey.food2Fork + "&rId="
 }
 
-var ingredientList = [];
+var ingredientList = [["egg"]];
 var recipeList = [];
 var loadImageIndex = 1;
+var cardTemplate = Handlebars.compile($("#card-template").html());
 
-function buildRecipeCards(obj1, obj2) {
-	var cardTemplate = Handlebars.compile($("#card-template").html());
-	//var aCard = {title_hb: "Test Title", url_hb: "http://www.jamieoliver.com/recipes/chocolate-recipes/bloomin-brilliant-brownies", image_hb: "assets/images/background1.jpg"};
-	//var aCard2 = {title_hb: "Test Title", url_hb: "http://www.jamieoliver.com/recipes/chocolate-recipes/bloomin-brilliant-brownies", image_hb: "assets/images/sample-1.jpg"};
-	$("#recipe-cards").html(cardTemplate(obj1) + cardTemplate(obj2));
-	//$("#recipe-cards").html(cardTemplate(aCard2));
+function buildRecipeCards(cardsPerRow) {
+	
+	$("#recipe-cards").append($("<div>").addClass("row").attr("id", "currentRow"));
 
+	for(var i = 0; i < recipeList.length; i++){
+
+		$("#currentRow").append(cardTemplate(recipeList[i]));
+
+		if(i % cardsPerRow == 2){
+			$("#currentRow").removeAttr("id");
+			$("#recipe-cards").append($("<div>").addClass("row").attr("id", "currentRow"));
+		}
+
+	}
+	
 }
 
 /// function to interact with HTML elements
@@ -37,28 +46,26 @@ function updateHTML(stateString, argsArray){
 			break;
 		
 		case "Completed Loading Selected Image File":
-
-			//$("#img"+loadImageIndex).attr("src", argsArray[0]);
-			//loadImageIndex++;
 			
 			break;
 
 		case "Begin Call to Google Vision API":
-
 			$("#text-bar").html("Working ...");
 			break;
 
-		case "Completed Call to Google Vision API":
-			
+		case "Completed Call to Google Vision API":			
 			$("#text-bar").html("Identified Ingredients: " + ingredientListToText());
 			break;
 
 		case "Begin Searching for Recipes by Ingredients":
-			// code
+			
 			break;
 
 		case "Completed Searching for Recipes by Ingredients":
-			if(recipeList.length > 1 ) buildRecipeCards(recipeList[1], recipeList[0]);
+			if(recipeList.length > 0){
+				$("#recipe-cards").empty();
+				buildRecipeCards(3);
+			}
 			break;
 
 		default:
@@ -140,10 +147,11 @@ function callFood2ForkAPI(){
 			var returnedRecipes = JSON.parse(searchByIngredientResults).recipes // array of json recipe objects
 
 			if(returnedRecipes.length > 0){
-
+				recipeList = [];
 				returnedRecipes.forEach(function(recipeObj){ // loop through returned recipe objects from food2fork
 					
-					var recipeData = {}
+					console.log(recipeObj);
+					var recipeData = {};
 					recipeData.title_hb = recipeObj.title;
 					recipeData.url_hb = recipeObj.source_url;
 					recipeData.id_hb = recipeObj.recipe_id;
