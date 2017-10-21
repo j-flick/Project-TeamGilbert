@@ -221,7 +221,7 @@ var validIngredientList =
                 "yogurt","cookies","espresso","loaf","sushi","sesame","tofu","walnuts","uncooked","ribs",
                 "kernels","guacamole","juiced","stalk","cauliflower","low-sodium","pitas","bean","yolks",
                 "mustard","corned","vinaigrette","saffron","confit","pea","pesto","arugula","caramelized",
-                "sauteed","cheeses","meats","pizza","pepperoni","olives","pico de gallo","tilapia","fillets",
+                "sauteed","cheeses","pizza","pepperoni","olives","pico de gallo","tilapia","fillets",
                 "soybean","blend","distilled","turmeric","apple","dumplings","spices","zucchini","squash","slice",
                 "lard","salted","salmon","soy","crackers","chuck","fat","ketchup","pickle","relish","hamburger",
                 "buns","dill","pickles","iceberg","core","bun-sized","deli-cut","american","granules","muscovado",
