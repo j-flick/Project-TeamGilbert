@@ -12,10 +12,28 @@ var apiURL = {
 	searchByRecipeID: "https://community-food2fork.p.mashape.com/get?key=" + apiKey.food2Fork + "&rId="
 }
 
-var ingredientList = [["egg"]];
+var ingredientList = [];
 var recipeList = [];
 var loadImageIndex = 1;
 var cardTemplate = Handlebars.compile($("#card-template").html());
+
+
+$("#file_loader").on('drag dragstart dragend dragover dragenter dragleave drop', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  })
+  .on('dragover dragenter', function() {
+    $("#file_loader").addClass('is-dragover');
+    console.log("dragover");
+  })
+  .on('dragleave dragend drop', function() {
+    $("#file_loader").removeClass('is-dragover');
+  })
+  .on('drop', function(e) {
+    console.log(e.originalEvent.dataTransfer.files);
+    callGoogleVisionAPI(e.originalEvent.dataTransfer);
+  }
+);
 
 function buildRecipeCards(cardsPerRow) {
 	
@@ -75,9 +93,10 @@ function updateHTML(stateString, argsArray){
 
 } // End updateHTML function
 
-function callGoogleVisionAPI(fileSelectorElement){	
+function callGoogleVisionAPI(droppedfile){	
 
-	var file = fileSelectorElement.files[0]; // Only uses first image if user selects multiple files
+	var file = droppedfile.files[0]; // Only uses first image if user selects multiple files
+	console.log(file)
 	var reader = new FileReader(); // File reader object to process selected file
 
 	reader.onloadend = function(){ // Callback function definition; Runs after FileReader loads file
